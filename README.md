@@ -2,7 +2,7 @@ Etherscan Agent (Ollama + LangChain + Streamlit + IPFS)
 
 An intelligent Ethereum assistant powered by Ollama (local LLM), LangChain tools, IPFS, and Etherscan API.
 Ask natural-language questions about Ethereum mainnet, and the agent will dynamically call tools to fetch the correct data. 
-It will then sync with IPFS to provide a decentralized history of requests.
+It will then sync with IPFS to provide a decentralized history of requests saved on a JSON file.
 
 Based on code by Roopa, Yashwanth, Rohith.
 
@@ -10,99 +10,109 @@ Based on code by Roopa, Yashwanth, Rohith.
 
 Features:
 
-    Query Ethereum using plain English.
+Query Ethereum using plain English.
 
-    Powered by a local LLM running on your machine (Ollama + Llama 3.2).
+Powered by a local LLM running on your machine (Ollama + Llama 3.2).
 
-    LangChain agent intelligently decides which tool to call.
+LangChain agent intelligently decides which tool to call.
 
-    Automatic uploading of input and output to IPFS network. Can fetch and update between agent sessions when IPFS server is running.
+Automatic uploading of input and output to IPFS network. Can fetch and update between agent sessions when IPFS server is running.
 
-    Fully interactive Streamlit UI.
+Fully interactive Streamlit UI.
 
 
-    Support for wide range of Ethereum questions:
-        Latest block info
-        Miner address
-        Transaction count
-        Gas used
-        Much more (via modular Etherscan tools)
+Support for wide range of Ethereum questions:
+    Latest block info
+    Miner address
+    Transaction count
+    Gas used
+    Much more (via modular Etherscan tools)
 
 
 
 📦 Installation (macOS)
 
-    1️⃣ Install Ollama (LLM engine)
+1️⃣ Install Ollama (LLM engine)
 
-    Download for macOS:
-        https://ollama.com/download
+Download for macOS:
+    https://ollama.com/download
 
-    Open the Ollama.app. This automatically starts the local server on:
-        http://localhost:11434
+Open the Ollama.app. This automatically starts the local server on:
+    http://localhost:11434
 
-    Pull the Llama 3.2 model: 
+Pull the Llama 3.2 model: 
+
         ollama pull llama3.2:3b
 
-    2️⃣ Install IPFS
+2️⃣ Install IPFS
 
-    Download for macOS:
-        https://docs.ipfs.tech/install/ipfs-desktop/
+Download for macOS:
+    https://docs.ipfs.tech/install/ipfs-desktop/
 
-    You can begin running your IPFS daemon by opening a new terminal window and running:
+You can begin running your IPFS daemon by opening a new terminal window and running:
+
         ipfs daemon
 
 
-    3️⃣ Clone your repository: 
+3️⃣ Clone your repository: 
 
         git clone https://github.com/elevenponcho/Ollama-agent-main.git
         cd Ollama-agent-main
 
-    4️⃣ Create a virtual environment: 
+4️⃣ Create a virtual environment: 
 
         python3 -m venv venv
         source venv/bin/activate
 
-    5️⃣ Install dependencies:
+5️⃣ Install dependencies:
 
-        Make sure that pip is up-to-date:
-            python3 -m pip install --upgrade pip
+Make sure that pip is up-to-date:
 
-        Then install dependencies: 
-            pip install langchain==0.2.16 langchain-core==0.2.38 langchain-community==0.2.16 streamlit requests ipfshttpclient
+        python3 -m pip install --upgrade pip
 
-    6️⃣ Add your Etherscan API key:
+Then install dependencies: 
 
-        Edit etherscan_agent.py:
-            ETHERSCAN_API_KEY = "YOUR_API_KEY_HERE"
+        pip install langchain==0.2.16 langchain-core==0.2.38 langchain-community==0.2.16 streamlit requests ipfshttpclient
 
-        (Do NOT commit real API keys to GitHub!)
+6️⃣ Add your Etherscan API key:
+
+Edit etherscan_agent.py:
+
+        ETHERSCAN_API_KEY = "YOUR_API_KEY_HERE"
+
+(Do NOT commit real API keys to GitHub!)
+
+
+
 
 
 ▶️ Running the Project:
 
-    1️⃣ Open the Ollama.app. This automatically starts the local server on:
-        http://localhost:11434
+1️⃣ Open the Ollama.app. This automatically starts the local server on: http://localhost:11434
 
-    2️⃣ Start IPFS by openinging a new terminal window and running:
-        ipfs daemon
+2️⃣ Start IPFS by openinging a new terminal window and running:
 
-    3️⃣ Activate virtual environment:  
-        source venv/bin/activate
+    ipfs daemon
 
-    4️⃣ Start the Streamlit UI:
-        streamlit run app.py
+3️⃣ Activate virtual environment:  
 
-    5️⃣ Open the link:
-        http://localhost:8501
+    source venv/bin/activate
+
+4️⃣ Start the Streamlit UI:
+
+    streamlit run app.py
+
+5️⃣ Open the link:
+    http://localhost:8501
 
 
 
-🖥️ UI Preview
+🖥️ Agent UI Preview:
 
-The UI allows you to enter any Ethereum-related question like:
+<img src="https://github.com/elevenponcho/Ollama-agent-main/blob/main/Agent%20UI%20Example.png" alt="Agent UI Example">
 
-What is the latest Ethereum block number?
+🖥️ Usage Example:
+<img src="https://github.com/elevenponcho/Ollama-agent-main/blob/main/Usage%20Example.png" alt="Usage Example">
 
-How many transactions are in the most recent block?
-
-What is the miner address of the latest block?
+🖥️ IPFS JSON Output File Example:
+<img src="https://github.com/elevenponcho/Ollama-agent-main/blob/main/IPFS%20JSON%20Output%20With%20Multiple%20Queries.png" alt="IPFS JSON Output With Multiple Queries">
